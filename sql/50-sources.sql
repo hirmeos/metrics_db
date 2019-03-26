@@ -1,8 +1,17 @@
 INSERT INTO source (source) VALUES
+('Google Books'),
+('IRUS-UK'),
+('JSTOR'),
+('OAPEN'),
 ('Open Book Publishers HTML Reader'),
 ('Open Book Publishers PDF Reader'),
 ('Open Book Publishers'),
-('Google Books'),
-('Open Edition HTML Reader'),
 ('Open Edition'),
-('World Reader');
+('OpenAIRE'),
+('SUB Göttingen'),
+('The Classics Library'),
+('Ubiquity Press'),
+('Unglue.it'),
+('Wikimedia'),
+('World Reader'),
+('Εθνικό Κέντρο Τεκμηρίωσης');
