@@ -128,7 +128,7 @@ INSERT INTO country (country_uri, country_code, country_name, continent_code) VA
 ('urn:iso:std:3166:-2:LT','LT','Lithuania','EU'),
 ('urn:iso:std:3166:-2:LU','LU','Luxembourg','EU'),
 ('urn:iso:std:3166:-2:MO','MO','Macao','AS'),
-('urn:iso:std:3166:-2:MK','MK','Macedonia','EU'),
+('urn:iso:std:3166:-2:MK','MK','North Macedonia','EU'),
 ('urn:iso:std:3166:-2:MG','MG','Madagascar','AF'),
 ('urn:iso:std:3166:-2:MW','MW','Malawi','AF'),
 ('urn:iso:std:3166:-2:MY','MY','Malaysia','AS'),
