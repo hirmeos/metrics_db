@@ -56,9 +56,15 @@ CREATE TABLE event(
   value integer NOT NULL,
   event_uri uri NULL,
   country_uri uri NULL REFERENCES country(country_uri),
-  uploader_uri uri NOT NULL,
-  UNIQUE(work_uri, measure_uri, timestamp, event_uri, country_uri)
+  uploader_uri uri NOT NULL
 );
-CREATE UNIQUE INDEX event_uri_measure_timestamp_country_uri_null_key ON event (work_uri, measure_uri, event_uri, timestamp)
-WHERE country_uri IS NULL;
-
+CREATE UNIQUE INDEX event_uri_measure_timestamp_event_uri_null_key ON event (work_uri, measure_uri, timestamp, event_uri)
+WHERE (country_uri IS NOT NULL AND event_uri IS NOT NULL)
+  OR (country_uri IS NULL AND event_uri IS NULL)
+  OR (country_uri IS NULL AND event_uri IS NOT NULL);
+CREATE UNIQUE INDEX event_uri_measure_timestamp_country_uri_null_key ON event (work_uri, measure_uri, timestamp, country_uri)
+WHERE (country_uri IS NOT NULL AND event_uri IS NOT NULL)
+  OR (country_uri IS NULL AND event_uri IS NULL)
+  OR (country_uri IS NOT NULL AND event_uri IS NULL);
+CREATE UNIQUE INDEX event_uri_measure_timestamp_null_key ON event (work_uri, measure_uri, timestamp)
+WHERE country_uri IS NULL AND event_uri IS NULL;
