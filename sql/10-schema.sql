@@ -6,13 +6,13 @@ CREATE TABLE continent(
 CREATE TABLE country(
   country_uri char(22) PRIMARY KEY NOT NULL,
   country_code char(2) NOT NULL,
-  country_name varchar(255) NOT NULL,
+  country_name text NOT NULL,
   continent_code char(2) NOT NULL REFERENCES continent(continent_code)
 );
 
 CREATE TABLE locale(
   locale_code char(5) PRIMARY KEY NOT NULL,
-  locale_name varchar(255) NOT NULL
+  locale_name text NOT NULL
 );
 
 CREATE TABLE type(
@@ -20,11 +20,11 @@ CREATE TABLE type(
 );
 
 CREATE TABLE source(
-  source varchar(255) PRIMARY KEY NOT NULL
+  source text PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE namespace(
-  namespace varchar(255) PRIMARY KEY NOT NULL
+  namespace text PRIMARY KEY NOT NULL
 );
 
 CREATE TABLE version(
@@ -33,8 +33,8 @@ CREATE TABLE version(
 
 CREATE TABLE measure(
   measure_uri text PRIMARY KEY NOT NULL,
-  namespace varchar(255) NOT NULL REFERENCES namespace(namespace),
-  source varchar(255) NOT NULL REFERENCES source(source),
+  namespace text NOT NULL REFERENCES namespace(namespace),
+  source text NOT NULL REFERENCES source(source),
   version varchar(255) NOT NULL REFERENCES version(version),
   type varchar(255) NOT NULL REFERENCES type(type)
 );
