@@ -1,12 +1,10 @@
-CREATE EXTENSION uri;
-
 CREATE TABLE continent(
   continent_code char(2) PRIMARY KEY NOT NULL,
   continent_name varchar(255) NOT NULL
 );
 
 CREATE TABLE country(
-  country_uri uri PRIMARY KEY NOT NULL,
+  country_uri char(22) PRIMARY KEY NOT NULL,
   country_code char(2) NOT NULL,
   country_name varchar(255) NOT NULL,
   continent_code char(2) NOT NULL REFERENCES continent(continent_code)
@@ -34,7 +32,7 @@ CREATE TABLE version(
 );
 
 CREATE TABLE measure(
-  measure_uri uri PRIMARY KEY NOT NULL,
+  measure_uri text PRIMARY KEY NOT NULL,
   namespace varchar(255) NOT NULL REFERENCES namespace(namespace),
   source varchar(255) NOT NULL REFERENCES source(source),
   version varchar(255) NOT NULL REFERENCES version(version),
@@ -42,7 +40,7 @@ CREATE TABLE measure(
 );
 
 CREATE TABLE measure_description(
-  measure_uri uri NOT NULL,
+  measure_uri text NOT NULL,
   locale_code char(5) NOT NULL,
   description text NOT NULL,
   PRIMARY KEY(measure_uri, locale_code)
@@ -50,13 +48,13 @@ CREATE TABLE measure_description(
 
 CREATE TABLE event(
   event_id uuid PRIMARY KEY NOT NULL,
-  work_uri uri NOT NULL,
-  measure_uri uri NOT NULL REFERENCES measure(measure_uri),
+  work_uri text NOT NULL,
+  measure_uri text NOT NULL REFERENCES measure(measure_uri),
   timestamp timestamp with time zone NOT NULL,
   value integer NOT NULL,
-  event_uri uri NULL,
-  country_uri uri NULL REFERENCES country(country_uri),
-  uploader_uri uri NOT NULL
+  event_uri text NULL,
+  country_uri char(22) NULL REFERENCES country(country_uri),
+  uploader_uri text NOT NULL
 );
 CREATE UNIQUE INDEX event_uri_measure_timestamp_event_uri_null_key ON event (work_uri, measure_uri, timestamp, event_uri)
 WHERE (country_uri IS NOT NULL AND event_uri IS NOT NULL)
